@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "apple" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "estadoOTP" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "estadoPasswordOTP" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "google" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "otp" TEXT,
+ADD COLUMN     "otpPassword" TEXT;

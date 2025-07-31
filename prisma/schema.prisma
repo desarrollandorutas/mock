@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+}
+
+enum UserSuscription {
+  FREE
+  BASIC
+  PREMIUM
+}
+
+model User {
+  id                String          @id @default(uuid())
+  email             String          @unique
+  name              String
+  password          String
+  status            UserStatus      @default(PENDING)
+  suscription       UserSuscription @default(FREE)
+  avatar            String?         @default("https://imagedelivery.net/ZQvAPo0mWcvFfH0G1AjV7Q/cd265003-13e8-4420-df01-3bdb3e336200/public")
+  otp               String?
+  otpPassword       String?
+  estadoPasswordOTP Boolean         @default(false)
+  google            Boolean         @default(false)
+  apple             Boolean         @default(false)
+  facebook          Boolean         @default(false)
+  instagram         Boolean         @default(false)
+  suscriptionDate   DateTime?
+  deleteDate        DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lemonsqueezy {
+  id                        String   @id @default(uuid())
+  order_id                  Int
+  tax                       Decimal
+  receipt_url               String
+  total                     Decimal
+  status                    String
+  tax_usd                   Decimal
+  currency                  String
+  refunded                  Boolean
+  store_id                  Decimal
+  subtotal                  Decimal
+  tax_name                  String
+  tax_rate                  Decimal
+  setup_fee                 Decimal
+  test_mode                 Boolean
+  total_usd                 Decimal
+  user_name                 String
+  created_at                DateTime
+  identifier                String
+  updated_at                DateTime
+  user_email                String
+  customer_id               Decimal
+  refunded_at               String?
+  order_number              Decimal
+  subtotal_usd              Decimal
+  currency_rate             String
+  setup_fee_usd             Decimal
+  tax_formatted             String
+  tax_inclusive             Boolean
+  discount_total            Decimal
+  refunded_amount           Decimal
+  total_formatted           String
+  status_formatted          String
+  discount_total_usd        Decimal
+  subtotal_formatted        String
+  refunded_amount_usd       Decimal
+  setup_fee_formatted       String
+  discount_total_formatted  String
+  refunded_amount_formatted String
+  user_id                   String
+}
